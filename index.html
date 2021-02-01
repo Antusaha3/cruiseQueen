@@ -29,13 +29,14 @@
     </header>
 
     <!--Booking Section-->
-    <main class="main-content container ">
+    <main class="main-content container">
 
         <div class="booking-content">
             <h1>Cruise Queen</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book./p>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book./p>
         </div>
-
 
         <div id="booked-area" class="booking-form">
             <h3>Book Ocean Time</h3>
@@ -50,7 +51,7 @@
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                        <input class="inp-style" type="date" name="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
@@ -60,22 +61,26 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input id="first-count"  class="inp-style inp-width" value="1" name="">
+                    <input id="first-count" class="inp-style inp-width" value="1" name="">
                 </div>
-                <div class="plus-minus-btn d-flex ">
-                    <button onclick="handleCabinChange('first', true)"  class="btn btn-default"><i class="fas fa-plus"></i></button>
-                    <button onclick="handleCabinChange('first', false)"class="btn btn-default"><i class="fas fa-minus"></i></button>
+                <div class="plus-minus-btn d-flex">
+                    <button onclick="handleCabinChange('first', true)" class="btn btn-default"><i
+                            class="fas fa-plus"></i></button>
+                    <button onclick="handleCabinChange('first', false)" class="btn btn-default"><i
+                            class="fas fa-minus"></i></button>
                 </div>
             </div>
-            
+
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
                     <input id="economy-count" class="inp-style inp-width" value="1" name="">
                 </div>
                 <div class="plus-minus-btn d-flex">
-                    <button onclick="handleCabinChange('economy', true)"class="btn btn-default"><i class="fas fa-plus"></i></button>
-                    <button onclick="handleCabinChange('economy', false)"class="btn btn-default"><i class="fas fa-minus"></i></button>
+                    <button onclick="handleCabinChange('economy', true)" class="btn btn-default"><i
+                            class="fas fa-plus"></i></button>
+                    <button onclick="handleCabinChange('economy', false)" class="btn btn-default"><i
+                            class="fas fa-minus"></i></button>
                 </div>
             </div>
             <div class="calculations">
@@ -102,69 +107,64 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <h5 id="grand-total" >$550</h5>
+                        <h5 id="grand-total">$550</h5>
                     </div>
                 </div>
             </div>
             <button id="book-now" class="btn-style">Book Now</button>
         </div>
 
-        <div id="booked">
-            <h5>Your Cabin has Been Booked </h5>
-
+        <div id="booked" class="ml-auto bg-dark p-2">
+            <h3 class="text-light">Your Cabin has Been Booked</h3>
         </div>
     </main>
-
-    <!--Thank You-->
     <script>
-        // handle cabin number
-      function handleCabinChange(cabin , isIncrease){
-          const cabinInput = document.getElementById(cabin + '-count');
-          const cabinCount = parseInt (cabinInput.value);
+        function handleCabinChange(cabin, isIncrease) {
+            const cabinInput = document.getElementById(cabin + '-count');
+            const cabinCount = parseInt(cabinInput.value);
 
-          let cabinNewCount = cabinCount;
-          if (isIncrease == true){
-              cabinNewCount = cabinCount + 1;
-          }
-          if (isIncrease == false && cabinCount > 0){
-              cabinNewCount = cabinCount -1;
-          }
-          cabinInput.value = cabinNewCount;
-          calculationTotal();
-      }
-       //handle calculation
-      function calculationTotal (){
-          const firstCount = getInputValue('first');
-          const economyCount = getInputValue('economy');
+            // console.log(cabinCount);
 
-          const subTotal = firstCount *150 + economyCount * 100;
-          document.getElementById('sub-total').innerText = '$' + subTotal;
+            let cabinNewCount = cabinCount;
+            if (isIncrease == true) {
+                cabinNewCount = cabinCount + 1;
+            }
+            if (isIncrease == false && cabinCount > 0) {
+                cabinNewCount = cabinCount - 1;
+            }
+            cabinInput.value = cabinNewCount;
+            calculationTotal();
+        }
 
-          const vat = Math.round(subTotal * 0.1);
-          document.getElementById('vat-amount').innerText = '$' + vat;
+        //handle calculation
+        function calculationTotal() {
+            const firstCount = getInputValue('first');
+            const economyCount = getInputValue('economy');
 
-          const grandTotal = subTotal + vat;
-          document.getElementById('grand-total').innerText = '$' + grandTotal;
-           
+            const subTotal = firstCount * 150 + economyCount * 100;
+            document.getElementById('sub-total').innerText = '$' + subTotal;
 
+            const vat = Math.round(subTotal * 0.1);
+            document.getElementById('vat-amount').innerText = '$' + vat;
 
+            const grandTotal = subTotal + vat;
+            document.getElementById('grand-total').innerText = '$' + grandTotal;
+        }
 
-      }
-
-      function getInputValue(cabin){
-         const cabinInput = document.getElementById(cabin + '-count');
-         const cabinCount = parseInt (cabinInput.value);
-         return cabinCount;
-      }
-     // booked button event handler
-      const bookBtn = document.getElementById('book-now');
-      bookBtn.addEventListener('click' , function(){
-          const bookArea = document.getElementById('booked-area');
-          bookArea.style.display = "none";
-
-          const bookArea = document.getElementById("booked");
-          bookArea.style.display = 'block';
-      })
+        function getInputValue(cabin) {
+            const cabinInput = document.getElementById(cabin + '-count');
+            const cabinCount = parseInt(cabinInput.value);
+            return cabinCount;
+        }
+        // booked button event handler
+        const bookBtn = document.getElementById('book-now');
+        bookBtn.addEventListener('click', function () {
+            let bookArea; 
+            bookArea = document.getElementById('booked-area');
+            bookArea.style.display = 'none';
+            bookArea = document.getElementById("booked");
+            bookArea.style.display = 'block';
+        });
     </script>
 </body>
 
